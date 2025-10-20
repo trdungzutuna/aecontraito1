@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Vietnamese Women's day 20/10</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .message-info {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sender, .recipient {
+            text-align: center;
+            flex: 1;
+        }
+
+        .info-label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ff9a9e;
+        }
+
+        .message-display {
+            padding: 40px 30px;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .message-content {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.4rem;
+            background-color: #ff9a9e;
+            margin-left: 5px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .controls {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            color: #333;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .decoration {
+            position: absolute;
+            opacity: 0.1;
+            font-size: 5rem;
+            z-index: 0;
+        }
+
+        .decoration-1 {
+            top: 20px;
+            left: 20px;
+            color: #ff9a9e;
+        }
+
+        .decoration-2 {
+            bottom: 20px;
+            right: 20px;
+            color: #fad0c4;
+            transform: rotate(180deg);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .heartbeat {
+            animation: heartbeat 1.5s ease-in-out infinite both;
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+        @keyframes heartbeat {
+            from {
+                transform: scale(1);
+                transform-origin: center center;
+                animation-timing-function: ease-out;
+            }
+            10% {
+                transform: scale(0.91);
+                animation-timing-function: ease-in;
+            }
+            17% {
+                transform: scale(0.98);
+                animation-timing-function: ease-out;
+            }
+            33% {
+                transform: scale(0.87);
+                animation-timing-function: ease-in;
+            }
+            45% {
+                transform: scale(1);
+                animation-timing-function: ease-out;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .message-content {
+                font-size: 1.2rem;
+                padding: 15px;
+            }
+            
+            .message-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .controls {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.7rem;
+            }
+            
+            .message-content {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Lời Nhắn <span class="heartbeat">❤️</span> Đặc Biệt</h1>
+            <p class="subtitle">Những lời tâm tư được gửi gắm từ trái tim</p>
+        </header>
+
+        <div class="message-info">
+            <div class="sender">
+                <div class="info-label">Người gửi</div>
+                <div class="info-value" id="sender-name">Đang tải...</div>
+            </div>
+            <div class="recipient">
+                <div class="info-label">Gửi đến</div>
+                <div class="info-value" id="recipient-name">Đang tải...</div>
+            </div>
+        </div>
+
+        <div class="message-display">
+            <div class="decoration decoration-1">
+                <i class="fas fa-quote-left"></i>
+            </div>
+            <div class="decoration decoration-2">
+                <i class="fas fa-quote-right"></i>
+            </div>
+            
+            <div class="message-content" id="message-text">
+                <!-- Nội dung lời nhắn sẽ được in dần ra ở đây -->
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="play-btn" class="btn">
+                <i class="fas fa-play"></i> Bắt đầu
+            </button>
+            <button id="pause-btn" class="btn btn-secondary">
+                <i class="fas fa-pause"></i> Tạm dừng
+            </button>
+            <button id="reset-btn" class="btn btn-secondary">
+                <i class="fas fa-redo"></i> Xem lại
+            </button>
+            <button id="share-btn" class="btn">
+                <i class="fas fa-share"></i> Chia sẻ
+            </button>
+        </div>
+
+        <footer>
+            <p>Lời nhắn tâm tư • Mỗi chữ là một nỗi niềm • <span id="current-date"></span></p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const messageText = document.getElementById('message-text');
+            const senderName = document.getElementById('sender-name');
+            const recipientName = document.getElementById('recipient-name');
+            const playBtn = document.getElementById('play-btn');
+            const pauseBtn = document.getElementById('pause-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            const shareBtn = document.getElementById('share-btn');
+            const progressBar = document.getElementById('progress-bar');
+            const currentDate = document.getElementById('current-date');
+            
+            // Lấy thông tin lời nhắn từ URL parameters hoặc localStorage
+            const urlParams = new URLSearchParams(window.location.search);
+            const messageId = urlParams.get('id');
+            
+            // Dữ liệu mẫu (trong thực tế sẽ lấy từ localStorage hoặc server)
+            const messages = [
+                {
+                    id: 1,
+                    sender: "Mẹ",
+                    recipient: "Con gái yêu",
+                    message: "Con là niềm hạnh phúc lớn nhất của mẹ. Dù con đi đâu, làm gì, hãy luôn nhớ rằng mẹ luôn yêu thương và ủng hộ con. Mẹ tin rằng con sẽ làm được những điều tuyệt vời trong cuộc sống."
+                },
+                {
+                    id: 2,
+                    sender: "Người bạn thân",
+                    recipient: "Bạn của tôi",
+                    message: "Cảm ơn vì đã luôn ở bên cạnh tôi trong những lúc khó khăn. Tôi trân trọng tình bạn của chúng ta nhiều lắm! Dù có chuyện gì xảy ra, tôi luôn ở đây vì bạn."
+                },
+                {
+                    id: 3,
+                    sender: "Anh trai",
+                    recipient: "Em gái",
+                    message: "Chúc em luôn mạnh mẽ và hạnh phúc. Nhớ rằng anh luôn ở đây nếu em cần bất cứ điều gì. Đừng bao giờ từ bỏ ước mơ của mình, em nhé!"
+                }
+            ];
+            
+            let currentMessage = messages[0]; // Mặc định hiển thị tin nhắn đầu tiên
+            let typingInterval;
+            let currentIndex = 0;
+            let isPlaying = false;
+            let typingSpeed = 50; // Tốc độ in chữ (ms)
+            
+            // Hiển thị ngày hiện tại
+            const now = new Date();
+            currentDate.textContent = now.toLocaleDateString('vi-VN');
+            
+            // Tìm tin nhắn theo ID từ URL
+            if (messageId) {
+                const foundMessage = messages.find(msg => msg.id == messageId);
+                if (foundMessage) {
+                    currentMessage = foundMessage;
+                }
+            }
+            
+            // Hiển thị thông tin người gửi và người nhận
+            senderName.textContent = currentMessage.sender;
+            recipientName.textContent = currentMessage.recipient;
+            
+            // Hàm bắt đầu hiệu ứng in chữ
+            function startTyping() {
+                if (isPlaying) return;
+                
+                isPlaying = true;
+                messageText.innerHTML = '';
+                currentIndex = 0;
+                
+                typingInterval = setInterval(function() {
+                    if (currentIndex < currentMessage.message.length) {
+                        // Thêm ký tự tiếp theo
+                        const char = currentMessage.message.charAt(currentIndex);
+                        messageText.innerHTML += char === ' ' ? '&nbsp;' : char;
+                        currentIndex++;
+                        
+                        // Cập nhật thanh tiến trình
+                        const progress = (currentIndex / currentMessage.message.length) * 100;
+                        progressBar.style.width = progress + '%';
+                        
+                        // Cuộn xuống dưới cùng
+                        messageText.scrollTop = messageText.scrollHeight;
+                    } else {
+                        // Kết thúc
+                        clearInterval(typingInterval);
+                        isPlaying = false;
+                        messageText.innerHTML = currentMessage.message;
+                    }
+                }, typingSpeed);
+            }
+            
+            // Hàm tạm dừng
+            function pauseTyping() {
+                if (isPlaying) {
+                    clearInterval(typingInterval);
+                    isPlaying = false;
+                }
+            }
+            
+            // Hàm reset
+            function resetTyping() {
+                clearInterval(typingInterval);
+                isPlaying = false;
+                messageText.innerHTML = '';
+                currentIndex = 0;
+                progressBar.style.width = '0%';
+            }
+            
+            // Hàm chia sẻ
+            function shareMessage() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: `Lời nhắn từ ${currentMessage.sender}`,
+                        text: currentMessage.message,
+                        url: window.location.href
+                    })
+                    .catch(error => console.log('Lỗi chia sẻ:', error));
+                } else {
+                    // Fallback cho trình duyệt không hỗ trợ Web Share API
+                    alert(`Lời nhắn từ ${currentMessage.sender}: "${currentMessage.message}"`);
+                }
+            }
+            
+            // Gán sự kiện cho các nút
+            playBtn.addEventListener('click', startTyping);
+            pauseBtn.addEventListener('click', pauseTyping);
+            resetBtn.addEventListener('click', resetTyping);
+            shareBtn.addEventListener('click', shareMessage);
+            
+            // Tự động bắt đầu sau 1 giây
+            setTimeout(startTyping, 1000);
+        });
+    </script>
+</body>
+</html>

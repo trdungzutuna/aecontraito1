@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Vietnamese Women's Day 20/10</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    #loading-screen {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 30px;
+      animation: fadeIn 2s ease-in-out infinite alternate;
+    }
+
+    .flower-loader {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      animation: spin 5s linear infinite;
+    }
+
+    .petal {
+      position: absolute;
+      width: 25px;
+      height: 50px;
+      background: #fff;
+      border-radius: 50% 50% 0 0;
+      transform-origin: bottom center;
+    }
+
+    .petal:nth-child(1) { transform: rotate(0deg) translateY(-25px); background:#ff6b6b;}
+    .petal:nth-child(2) { transform: rotate(45deg) translateY(-25px); background:#ff8e8e;}
+    .petal:nth-child(3) { transform: rotate(90deg) translateY(-25px); background:#ffb3b3;}
+    .petal:nth-child(4) { transform: rotate(135deg) translateY(-25px); background:#ffd6d6;}
+    .petal:nth-child(5) { transform: rotate(180deg) translateY(-25px); background:#ffc0cb;}
+    .petal:nth-child(6) { transform: rotate(225deg) translateY(-25px); background:#ff8fa3;}
+    .petal:nth-child(7) { transform: rotate(270deg) translateY(-25px); background:#ff6b81;}
+    .petal:nth-child(8) { transform: rotate(315deg) translateY(-25px); background:#ff5c8a;}
+
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    @keyframes fadeIn { from { opacity: 0.6; } to { opacity: 1; } }
+
+    .fade-out {
+      animation: fadeOut 1s forwards;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; transform: scale(1.05); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="loading">
+    <div id="loading-screen">🌸 Happy Vietnamese Women's Day 20/10 🌸</div>
+    <div class="flower-loader">
+      <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+      <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+    </div>
+  </div>
+
+  <script>
+    // Hiệu ứng fade-out trước khi chuyển trang
+    setTimeout(() => {
+      document.body.classList.add("fade-out");
+    }, 2700);
+
+    // Sau 3s chuyển sang receive.html
+    setTimeout(() => {
+      window.location.href = "receive.html";
+    }, 3000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gửi Lời Nhắn 💌</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    header {
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .form {
+      padding: 30px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+    }
+
+    textarea { min-height: 120px; }
+
+    .btn {
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 25px;
+      margin-top: 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>💌 Gửi Lời Nhắn Chúc 💌</h1>
+      <p>Viết điều bạn muốn nhắn gửi đến các bạn nữ</p>
+    </header>
+
+    <div class="form">
+      <label for="sender">👤 Người gửi</label>
+      <input id="sender" placeholder="Tên của bạn (tuỳ chọn)">
+
+      <label for="recipient">🎀 Người nhận</label>
+      <input id="recipient" placeholder="Gửi đến ai đó">
+
+      <label for="message">💬 Lời nhắn</label>
+      <textarea id="message" placeholder="Hãy viết điều bạn muốn nói..."></textarea>
+
+      <label for="message-type">🏷️ Loại lời nhắn</label>
+      <select id="message-type">
+        <option value="love">Tình yêu</option>
+        <option value="friendship">Tình bạn</option>
+        <option value="family">Gia đình</option>
+        <option value="thanks">Cảm ơn</option>
+        <option value="apology">Xin lỗi</option>
+        <option value="encouragement">Động viên</option>
+      </select>
+
+      <button id="submit-btn" class="btn"><i class="fas fa-paper-plane"></i> Gửi lời nhắn</button>
+      <a href="receive.html" class="btn" style="background:linear-gradient(135deg,#ff6b6b,#ff8e8e);margin-left:10px;">
+        <i class="fas fa-inbox"></i> Xem Lời Nhắn
+      </a>
+    </div>
+  </div>
+
+  <!-- 🔥 Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDBPhPIxhHI8eXigNvpP6DFTIUeboqp_dU",
+      authDomain: "trandung-1db2d.firebaseapp.com",
+      databaseURL: "https://trandung-1db2d-default-rtdb.firebaseio.com",
+      projectId: "trandung-1db2d",
+      storageBucket: "trandung-1db2d.firebasestorage.app",
+      messagingSenderId: "302719710077",
+      appId: "1:302719710077:web:6e15a08bbc2c1a532b5214",
+      measurementId: "G-YZ77RQWX59"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    document.getElementById("submit-btn").addEventListener("click", async () => {
+      const sender = document.getElementById("sender").value.trim() || "Ẩn danh";
+      const recipient = document.getElementById("recipient").value.trim() || "Ai đó";
+      const message = document.getElementById("message").value.trim();
+      const type = document.getElementById("message-type").value;
+
+      if (!message) {
+        alert("⚠️ Vui lòng nhập nội dung lời nhắn!");
+        return;
+      }
+
+      const messageObj = {
+        id: Date.now(),
+        sender,
+        recipient,
+        message,
+        type,
+        timestamp: new Date().toLocaleString("vi-VN"),
+        isFavorite: false
+      };
+
+      try {
+        await db.ref("messages").push(messageObj);
+        alert("🎉 Gửi lời nhắn thành công!");
+        document.getElementById("message").value = "";
+      } catch (err) {
+        console.error("❌ Gửi lỗi:", err);
+        alert("❌ Không thể gửi tin nhắn. Kiểm tra kết nối Firebase!");
+      }
+    });
+  </script>
+</body>
+</html>

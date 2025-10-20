@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nhận Lời Nhắn 💝</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffe3e3, #ffb6b6);
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    header {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .messages-container {
+      padding: 30px;
+      min-height: 400px;
+    }
+
+    .message-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+    }
+
+    .message-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .sender {
+      color: #ff6b6b;
+      font-weight: bold;
+    }
+
+    .recipient {
+      color: #2575fc;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #f9f9f9;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>💝 Những Lời Nhắn Yêu Thương 💝</h1>
+      <p>Các lời nhắn sẽ hiển thị ở đây — realtime từ Firebase</p>
+    </header>
+
+    <div class="messages-container" id="messages-list">
+      <p style="text-align:center;color:#777;">⏳ Đang tải lời nhắn...</p>
+    </div>
+
+    <footer>
+      <a href="message.html" class="btn" style="background:linear-gradient(135deg,#ff6b6b,#ff8e8e);padding:10px 20px;color:#fff;border-radius:30px;text-decoration:none;">
+        <i class="fas fa-arrow-left"></i> Quay lại trang gửi
+      </a>
+      <p>© 2025 Lời Nhắn Tâm Tư | Dũng Trần</p>
+    </footer>
+  </div>
+
+  <!-- 🔥 Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDBPhPIxhHI8eXigNvpP6DFTIUeboqp_dU",
+      authDomain: "trandung-1db2d.firebaseapp.com",
+      databaseURL: "https://trandung-1db2d-default-rtdb.firebaseio.com",
+      projectId: "trandung-1db2d",
+      storageBucket: "trandung-1db2d.firebasestorage.app",
+      messagingSenderId: "302719710077",
+      appId: "1:302719710077:web:6e15a08bbc2c1a532b5214",
+      measurementId: "G-YZ77RQWX59"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    const listEl = document.getElementById("messages-list");
+
+    db.ref("messages").on("value", (snapshot) => {
+      const data = snapshot.val();
+      if (!data) {
+        listEl.innerHTML = `<p style="text-align:center;color:#999;">💤 Chưa có lời nhắn nào được gửi.</p>`;
+        return;
+      }
+
+      let html = "";
+      Object.values(data)
+        .sort((a, b) => b.id - a.id)
+        .forEach(msg => {
+          html += `
+            <div class="message-card">
+              <p><span class="sender">👤 ${msg.sender}</span> ➡️ <span class="recipient">${msg.recipient}</span></p>
+              <p>💬 ${msg.message}</p>
+              <p style="font-size:0.9rem;color:#666;">📅 ${msg.timestamp}</p>
+            </div>
+          `;
+        });
+      listEl.innerHTML = html;
+    });
+  </script>
+</body>
+</html>
